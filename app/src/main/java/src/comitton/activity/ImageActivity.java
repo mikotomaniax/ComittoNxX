@@ -289,6 +289,7 @@ public class ImageActivity extends Activity implements OnTouchListener, Handler.
 	private boolean mIsConfSave;
 	private boolean mScrlNext = false; // スクロールで前後のページへ移動
 	private boolean mViewNext = false; // 次のページを表示
+	private boolean mChgPageKey = false;
 
 	private String mCharset;
 
@@ -890,8 +891,10 @@ public class ImageActivity extends Activity implements OnTouchListener, Handler.
 			switch (code) {
 				case KeyEvent.KEYCODE_DPAD_RIGHT:
 				case KeyEvent.KEYCODE_DPAD_LEFT: {
+					int right = !mChgPageKey ? KeyEvent.KEYCODE_DPAD_RIGHT : KeyEvent.KEYCODE_DPAD_LEFT;
+					int left = !mChgPageKey ? KeyEvent.KEYCODE_DPAD_LEFT : KeyEvent.KEYCODE_DPAD_RIGHT;
 					// カーソル左右でページ遷移
-					if ((code == KeyEvent.KEYCODE_DPAD_RIGHT && mPageWay == DEF.PAGEWAY_RIGHT) || (code == KeyEvent.KEYCODE_DPAD_LEFT && mPageWay != DEF.PAGEWAY_RIGHT)) {
+					if ((code == right && mPageWay == DEF.PAGEWAY_RIGHT) || (code == left && mPageWay != DEF.PAGEWAY_RIGHT)) {
 						// 次ページへ
 						nextPage();
 					}
@@ -3799,6 +3802,8 @@ public class ImageActivity extends Activity implements OnTouchListener, Handler.
 
 			// アクセス状態表示
 			mAccessLamp = SetImageDetailActivity.getAccessLamp(sharedPreferences);
+
+			mChgPageKey = SetImageText.getChgPageKey(sharedPreferences);
 		}
 		catch (Exception e) {
 			Log.e("ImageActivity", "ReadSetting error.");
