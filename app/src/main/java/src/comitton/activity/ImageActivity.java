@@ -290,6 +290,7 @@ public class ImageActivity extends Activity implements OnTouchListener, Handler.
 	private boolean mScrlNext = false; // スクロールで前後のページへ移動
 	private boolean mViewNext = false; // 次のページを表示
 	private boolean mChgPageKey = false;
+	private boolean mNextFilter = true;
 
 	private String mCharset;
 
@@ -1768,7 +1769,7 @@ public class ImageActivity extends Activity implements OnTouchListener, Handler.
 	private void setViewConfig() {
 		if (mImageView != null) {
 			mImageView.setConfig(this, mMgnColor, mCenColor, mTopColor1, mViewPoint, mMargin, mCenter, mShadow, mZoomType, mPageWay, mScrlWay, mScrlRngW, mScrlRngH, mPrevRev, mNoExpand, mFitDual,
-					mCMargin, mCShadow, mPseLand, mEffect, mScrlNext, mViewNext);
+					mCMargin, mCShadow, mPseLand, mEffect, mScrlNext, mViewNext, mNextFilter);
 			mImageView.setLoupeConfig( mLoupeSize );	// ルーペサイズの設定
 		}
 		if (mGuideView != null) {
@@ -3797,6 +3798,7 @@ public class ImageActivity extends Activity implements OnTouchListener, Handler.
 
 			mScrlNext = SetImageActivity.getScrlNext(sharedPreferences); // スクロールで次のページへ移動
 			mViewNext = SetImageActivity.getViewNext(sharedPreferences); // 次のページを表示
+			mNextFilter = SetImageActivity.getNextFilter(sharedPreferences);
 
 			mRotateBtn = DEF.RotateBtnList[SetCommonActivity.getRotateBtn(sharedPreferences)];
 
