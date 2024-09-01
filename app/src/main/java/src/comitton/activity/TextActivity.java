@@ -192,6 +192,7 @@ public class TextActivity extends Activity implements OnTouchListener, Handler.C
 	private boolean mNotice;
 	private boolean mNoSleep;
 	private boolean mChgPage;
+	private boolean mChgPageKey;
 	private boolean mChgFlick;
 	private boolean mConfirmBack;
 	private boolean mCMargin;
@@ -726,14 +727,24 @@ public class TextActivity extends Activity implements OnTouchListener, Handler.C
 			switch (code) {
 				case KeyEvent.KEYCODE_DPAD_RIGHT:
 				{
-					// 次ページへ
-					nextPage();
+					if (mChgPageKey) {
+						// 前ページへ
+						prevPage();
+					} else {
+						// 次ページへ
+						nextPage();
+					}
 					break;
 				}
 				case KeyEvent.KEYCODE_DPAD_LEFT:
 				{
-					// 前ページへ
-					prevPage();
+					if (mChgPageKey) {
+						// 次ページへ
+						nextPage();
+					} else {
+						// 前ページへ
+						prevPage();
+					}
 					break;
 				}
 				case KeyEvent.KEYCODE_MENU:
@@ -2381,6 +2392,7 @@ public class TextActivity extends Activity implements OnTouchListener, Handler.C
 		mTopColor2 = 0x40000000 | (mTopColor1 & 0x00FFFFFF);
 
 		mChgPage = SetImageText.getChgPage(sharedPreferences);
+		mChgPageKey = SetImageText.getChgPageKey(sharedPreferences);
 		mChgFlick = SetImageText.getChgFlick(sharedPreferences);
 		mLastMsg = SetImageText.getLastPage(sharedPreferences);
 		// mSavePage = false;// SetImageText.getSavePage(sharedPreferences);
