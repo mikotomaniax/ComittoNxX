@@ -144,8 +144,8 @@ public class FileAccess {
 
 		} else {
 			// Connect with anonymous mode
-			context = SingletonContext.getInstance().withAnonymousCredentials();
-//			context = SingletonContext.getInstance().withGuestCrendentials();
+//			context = SingletonContext.getInstance().withAnonymousCredentials();
+			context = SingletonContext.getInstance().withGuestCrendentials();	// Windows共有の接続確認のため
 		}
 
 		sfile = new SmbFile(url, context);
