@@ -4,7 +4,7 @@ plugins {
 }
 
 def packageName = "jp.dip.muracoro.comittonx"
-def applicationName = "ComittoNxX"
+def applicationName = "ComittoNxXd"
 def versionMajor = 2
 def versionMinor = 0
 def versionPatch = 0
@@ -14,7 +14,7 @@ def WITH_JPEG = "ON"
 def WITH_PNG = "ON"
 def WITH_GIF = "ON"
 def WITH_WEBP = "ON"
-def WITH_AVIF = "ON"
+def WITH_AVIF = "OFF"
 def WITH_HEIF = "ON"
 def WITH_JXL = "OFF"
 
@@ -95,10 +95,10 @@ android {
         }
         debug {
             ndk {
-                abiFilters "arm64-v8a"
+                abiFilters "arm64-v8a", "x86_64"
             }
-            applicationIdSuffix ".debug"
-            versionNameSuffix "debug"
+            applicationIdSuffix ".debugd"
+            versionNameSuffix "debugd"
             debuggable true
             minifyEnabled false
         }
